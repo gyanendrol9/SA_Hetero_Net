@@ -1,4 +1,4 @@
-<h1>Sentiment Analysis of Tweets using Heterogeneous Multi-layer NetworkRepresentation and Embedding</h1>
+<h1>Sentiment Analysis of Tweets using Heterogeneous Multi-layer Network Representation and Embedding</h1>
 
 <h4>Loitongbam Gyanendro Singh, Anasua Mitra, Sanasam Ranbir Singh</h4>
 
