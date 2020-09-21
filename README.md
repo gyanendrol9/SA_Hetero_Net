@@ -8,5 +8,7 @@ In this study, we propose a heterogeneous multi-layer network-based representati
 From various experimental analyses, it is evident that the proposed method can address the problem of under-specificity, noisy text, and multilingual content present in a tweet and provides better classification performance than the text-based counterpart.
 Further, the proposed centrality aware based random walk provides better representations than unbiased and other biased counterparts. 
 </p>
-
+<h4>Proposed framework</h4>
+<img src="framework.png" alt="Framework">
+<br>
 <h3>This work is accepted in EMNLP 2020</h3>
