@@ -9,6 +9,6 @@ From various experimental analyses, it is evident that the proposed method can a
 Further, the proposed centrality aware based random walk provides better representations than unbiased and other biased counterparts. 
 </p>
 <h4>Proposed framework</h4>
-<img src="framework.png" alt="Framework">
+<img src="https://raw.githubusercontent.com/gloitongbam/SA_Hetero_Net/master/ensemble_new.png?token=AETSTAWGCPOJUXOK4D4ID427NCJOK" alt="Framework">
 <br>
 <h3>This work is accepted in EMNLP 2020</h3>
