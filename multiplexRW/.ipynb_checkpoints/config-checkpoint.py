@@ -1,0 +1,12 @@
+p = 1.0
+q = 1.0
+r = 0.7
+num_walks = 5
+walk_length = 30
+is_directed = True
+compute_weights = True
+choice_of_gamma = 0.5
+generate_tweet_from_graph = True
+use_original_weight_for_tweet_rw = True
+gamma_range = range(5, 6) #range(4, 8)
+delta = {"H":0.1285338593, "K":0.5049309665, "M":0.1619000657}
