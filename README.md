@@ -9,3 +9,4 @@ From various experimental analyses, it is evident that the proposed method can a
 Further, the proposed centrality aware based random walk provides better representations than unbiased and other biased counterparts. 
 </p>
 
+<h3>This work is accepted in EMNLP 2020</h3>
