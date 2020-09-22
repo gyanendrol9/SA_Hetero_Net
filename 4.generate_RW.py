@@ -1,19 +1,24 @@
+import pickle
+import itertools
 import networkx as nx
+import numpy as np
 import pandas as pd
-
+import time
+import random
+from collections import OrderedDict
+from decimal import Decimal
+from multiplexRW import * 
 import numpy as np
 import gc
 import sys
-
-import pickle
+import Random_walk
+import re
+import math
+import editdistance
 from gensim.models.fasttext import FastText
 
 stopwords = ['rt','amp','url','https','sir','day','title','shri','crore','time',"a", "about","above", "across", "after", "afterwards", "again", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the"]
 
-import math
-import editdistance
-import pandas as pd
-import re
 
 def edit_distance_pc(ipword1,ipword2):
     w1=ipword1.replace('M_','').replace('H_','')
@@ -32,8 +37,6 @@ def edit_distance_pc(ipword1,ipword2):
 def logistic(total):
     total=1/(1+math.exp(-total))
     return total
-
-import pickle as pkl 
 
 def similar_word_merge(ipword,s_type='edit_score'):
     selected=[]
@@ -98,7 +101,7 @@ def similar_word_merge(ipword,s_type='edit_score'):
         else:
             node_influence=float(0)
             layer_influence=float(0)
-        total=0.6*logistic(node_influence)+0.4*logistic(layer_influence)
+        total=0.5*logistic(node_influence)+0.5*logistic(layer_influence)
         df.loc[ii]=[selected,xx,cosined,logistic(node_influence),logistic(layer_influence),total]
 
     if s_type=='edit_score':
@@ -133,7 +136,7 @@ def retrieve_query(query,final_information,sortby='edit_score'):
         xx=edit_distance_pc(query,i)
         cosined=model.wv.similarity(query, i)
         if i in centrality_score:
-            total=0.6*centrality_score[i]['node_influence']+0.4*centrality_score[i]['layer_influence']
+            total=0.5*centrality_score[i]['node_influence']+0.5*centrality_score[i]['layer_influence']
             df.loc[ii]=[i,xx*cosined,centrality_score[i]['node_influence'],total]
         else:
             total=0.0001
@@ -202,26 +205,9 @@ def get_k_similarity(queries,k,sortby='edit_score'):
     return (result,pdresult)
 
 
-import numpy as np
-import gc
-import sys
 
-import pickle
-import networkx as nx
-import numpy as np
-import pandas as pd
-import time
-import itertools
-import random
-from collections import OrderedDict
-from decimal import Decimal
-from multiplexRW import * 
-import numpy as np
-import gc
-import sys
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
-import pickle
 
 #python code.py 5 #number of walk
 
@@ -566,38 +552,15 @@ def simulate_tweet_rw_from_original_graph(tweet_augmented):
 
     return walk_df
 
-import pickle
-import itertools
-import networkx as nx
-import numpy as np
-import pandas as pd
-import time
-import random
-from collections import OrderedDict
-from decimal import Decimal
-from multiplexRW import * 
-import numpy as np
-import gc
-import sys
 
 f_tweet = open('data/semeval13_multiplex_network.pkl', 'rb')
 tweet_net=pickle.load(f_tweet)       #((hashtags,mentions,edges,h_k,m_k),res,label)
 f_tweet.close()
 
 
-import itertools
-from node2vec import Node2Vec
-
-import Random_walk
-from MNE import *
-
-import multiprocessing 
-import re
 regex = r'https?:|urls?|[/\:,-."\'?!;’|…]+'
 
-preprocess_corpus_startnode=open('data/semeval13_biased_rw_startnode_without_expansion','a')
-preprocess_corpus_startnode_mne=open('data/semeval13_MNE_rw_startnode_without_expansion','a')
-preprocess_corpus_startnode_n2v=open('data/semeval13_N2V_rw_startnode_without_expansion','a')
+preprocess_corpus_startnode=open('data/semeval13_biased_rw_startnode_without_expansion','w')
 
 tids=0
 for tid in tweet_net:
@@ -659,6 +622,7 @@ for tid in tweet_net:
             if q1 not in stopwords:
                 query_keyword.append(q1)
 
+        #node expansion module can be added here
 
         if len(K_K)==0 or len(keywordList)<2:
             K_K+=[(x) for x in itertools.permutations(set(keywordList),2)]
@@ -726,8 +690,6 @@ for tid in tweet_net:
             h_m = pd.DataFrame(H_M);
             bipartite_files = {"H-M": h_m}
 
-        G=get_G_from_edges(edges_all)
-        start_node=tweet_net[tid][1][0].replace('@','M_').replace('#','H_')
         def create_biased_rw(xx):
             (layer_files,bipartite_files,f)=xx
             print(f)
@@ -753,51 +715,9 @@ for tid in tweet_net:
                 f.write('\n')
                             # print('Biased RW write completed')
 
-
-        def create_mne_rw(G,f):
-            base_G = Random_walk.RWGraph(G, 'undirected', 1, 1) 
-            base_G.preprocess_transition_probs()  
-            base_walks = base_G.simulate_walks(10, 30)  #num_walks, walk_length
-
-            for walk in base_walks:
-                # print('startnode',start_node)
-                if len(walk)>5:
-                    print('startnode',walk[0])
-                    f.write(tid+'\t')
-                    for n_node in walk:
-                        f.write(n_node+' ')
-                f.write('\n')
-            f.write('\n')
-
-        def create_n2v_rw(G,f):
-            n2v=Node2Vec(G,dimensions=30,walk_length=30,num_walks=10,p=1,q=1)
-            base_walks=n2v.walks
-
-            for walk in base_walks:
-                if len(walk)>5:
-                    # print('startnode',walk[0])
-                    f.write(tid+'\t')
-                    for n_node in walk:
-                        f.write(n_node+' ')
-                f.write('\n')
-            f.write('\n')
-
-        p1 = multiprocessing.Process(target=create_biased_rw, args=((layer_files,bipartite_files,preprocess_corpus_startnode), ))
-        p2 = multiprocessing.Process(target=create_mne_rw, args=(G,preprocess_corpus_startnode_mne, ))
-        p3 = multiprocessing.Process(target=create_n2v_rw, args=(G, preprocess_corpus_startnode_n2v,))
-
-        p1.start() 
-        p2.start() 
-        p3.start() 
-
-        p1.join()
-        p2.join()
-        p3.join()
-   
+        create_biased_rw((layer_files,bipartite_files,preprocess_corpus_startnode))   
     tids+=1
 
        
 
 preprocess_corpus_startnode.close()
-preprocess_corpus_startnode_n2v.close()
-preprocess_corpus_startnode_mne.close()
