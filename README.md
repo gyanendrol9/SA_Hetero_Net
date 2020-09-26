@@ -18,7 +18,7 @@ The software can run on CPU or GPU, dependency requirements are following:
 + python
 + tensorflow
 
-'''shell
+''
 pip install numpy
 pip install keras
 pip install pandas
@@ -27,6 +27,6 @@ pip install gensim
 pip install nltk
 pip install editdistance
 pip install emoji
-'''
+''
 
 <h3>This work is accepted in EMNLP 2020</h3>
