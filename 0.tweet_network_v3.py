@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 import numpy as np
-import nltk
-from nltk.tokenize import TweetTokenizer
 import sys
 import string
 import re

@@ -4,7 +4,7 @@ f_tweet = open('data/semeval13_multiplex_network.pkl', 'rb')
 tweet_net=pickle.load(f_tweet)       #((hashtags,mentions,edges,h_k,m_k),res,label)
 f_tweet.close()
 
-from collections import Counter, defaultdict
+from collections import defaultdict
 # Create a placeholder for model
 kkmodel = defaultdict(lambda: defaultdict(lambda: 0))
 hkmodel = defaultdict(lambda: defaultdict(lambda: 0))

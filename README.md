@@ -1,6 +1,6 @@
-<h1>Sentiment Analysis of Tweets using Heterogeneous Multi-layer Network Representation and Embedding</h1>
+# Sentiment Analysis of Tweets using Heterogeneous Multi-layer Network Representation and Embedding
 
-<h4>Loitongbam Gyanendro Singh, Anasua Mitra, Sanasam Ranbir Singh</h4>
+## Loitongbam Gyanendro Singh, Anasua Mitra, Sanasam Ranbir Singh
 
 <p>
 Sentiment classification on Twitter text often needs to deal with the problems of under-specificity, noise, and multilingual content.
@@ -11,4 +11,16 @@ Further, the proposed centrality aware based random walk provides better represe
 <h4>Proposed framework</h4>
 <img src="https://github.com/gloitongbam/SA_Hetero_Net/blob/master/ensemble_new.png" alt="Framework">
 <br>
+<h4>System requirements</h4>
+```shell
+numpy
+keras
+pandas
+networkx
+gensim
+nltk
+editdistance
+emoji
+```
+
 <h3>This work is accepted in EMNLP 2020</h3>

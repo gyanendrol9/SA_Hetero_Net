@@ -113,9 +113,6 @@ from keras.layers import Flatten
 from keras.layers import Lambda
 from keras import backend as K
 
-def timedistributed_sum(x):
-   return K.sum(x, axis=1)
-
 lstmnode=64
 
 def BiLSTM_self_attention_CNN(input_node,max_len):
