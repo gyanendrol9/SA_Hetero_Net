@@ -1,6 +1,6 @@
 # Sentiment Analysis of Tweets using Heterogeneous Multi-layer Network Representation and Embedding
 
-<h4>Loitongbam Gyanendro Singh, Anasua Mitra, Sanasam Ranbir Singh</h4>
+<h4><a href="https://sites.google.com/view/gyanendro">Loitongbam Gyanendro Singh</a>, Anasua Mitra, Sanasam Ranbir Singh</h4>
 
 <p>
 Sentiment classification on Twitter text often needs to deal with the problems of under-specificity, noise, and multilingual content.
