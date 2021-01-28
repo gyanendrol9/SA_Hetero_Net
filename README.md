@@ -29,4 +29,15 @@ pip install editdistance
 pip install emoji
 ```
 
-## This work is accepted in EMNLP 2020
+## This work is published in EMNLP 2020
+```shell
+@inproceedings{singh2020sentiment,
+  title={Sentiment Analysis of Tweets using Heterogeneous Multi-layer Network Representation and Embedding},
+  author={Singh, Loitongbam Gyanendro and Mitra, Anasua and Singh, Sanasam Ranbir},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages={8932--8946},
+  year={2020}
+}
+```
+
+
